@@ -4,7 +4,7 @@ __docformat__ = "numpy"
 import datetime
 import logging
 import warnings
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 import numpy as np
 import pandas as pd
@@ -180,7 +180,7 @@ class PortfolioEngine:
         return df
 
     @staticmethod
-    def read_transactions(path: str) -> pd.DataFrame:
+    def read_transactions(path: str, csv_separator: Optional[str] = None) -> pd.DataFrame:
         """Read static method to read transactions from file.
 
         Parameters
@@ -202,7 +202,7 @@ class PortfolioEngine:
                 )
             transactions = pd.read_excel(path)
         elif path.endswith(".csv"):
-            transactions = pd.read_csv(path)
+            transactions = pd.read_csv(path, sep=csv_separator)
 
         return transactions
 
